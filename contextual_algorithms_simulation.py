@@ -1,4 +1,5 @@
 import pickle
+import copy
 
 import numpy as np
 from mab_samplers.linear_cmab_sampler import LinearCMABSampler
@@ -40,7 +41,7 @@ def main():
   CMAB = NormalLinearThompsonSamplingCMAB(
     num_arms=2,
     reward_sampler=sampler,
-    thompson_parameters = cmab_thompson_parameters
+    thompson_parameters=copy.deepcopy(cmab_thompson_parameters)
   )
 
 
@@ -54,7 +55,7 @@ def main():
   MAB = NormalInverseGammaThompsonSamplingMAB(
     num_arms=2,
     reward_sampler=sampler,
-    thompson_parameters = mab_thompson_parameters
+    thompson_parameters=copy.deepcopy(mab_thompson_parameters)
   )
 
 
@@ -74,7 +75,7 @@ def main():
   NEW_CMAB = MultipleNormalInverseGammaThompsonSamplinCMAB(
     num_arms=2, 
     reward_sampler=sampler, 
-    thompson_parameters=new_cmab_thompson_parameters
+    thompson_parameters=copy.deepcopy(new_cmab_thompson_parameters)
   )
 
 
@@ -104,7 +105,7 @@ def main():
 
     if (i % 100 == 99):
       print(f"Saving simulations {i-99}-{i}")
-      with open(f'simulations_object_{i-99}_{i}', 'wb') as f:
+      with open(f'simulation_data/simulations_object_{i-99}_{i}', 'wb') as f:
         pickle.dump(simulations, f)
         simulations = []
 

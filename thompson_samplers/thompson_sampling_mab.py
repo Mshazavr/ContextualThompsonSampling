@@ -41,7 +41,7 @@ class ThompsonSamplingMAB:
 
   
   def reset_thompson_parameters(self, thompson_parameters):
-    self.thompson_parameters = thompson_parameters
+    self.thompson_parameters = copy.deepcopy(thompson_parameters)
 
 
   def run(self, iterations=1000, policy="thompson", verbose=False):
