@@ -102,9 +102,9 @@ def main():
       "new_cmab_trace": new_cmab_trace
     })
 
-    if (i % 10 == 9):
-      print(f"Saving simulations {i-9}-{i}")
-      with open(f'simulations_object_{i-9}_{i}', 'wb') as f:
+    if (i % 100 == 99):
+      print(f"Saving simulations {i-99}-{i}")
+      with open(f'simulations_object_{i-99}_{i}', 'wb') as f:
         pickle.dump(simulations, f)
         simulations = []
 
