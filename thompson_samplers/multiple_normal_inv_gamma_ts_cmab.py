@@ -1,5 +1,6 @@
 import numpy as np
-from thompson_sampling_mab import ThompsonSamplingMAB
+from dataclasses import dataclass, field
+from .thompson_sampling_mab import ThompsonSamplingMAB
 
 
 @dataclass
@@ -55,7 +56,6 @@ class MultipleNormalInverseGammaThompsonSamplinCMAB(ThompsonSamplingMAB):
   def _update_thompson_parameters_from_data(self, old_data, new_data):
     chosen_arm = new_data["arm"]
     reward = new_data["reward"]
-    context = new_data["context"]
     context_i = new_data["context_i"]
 
     prior_mu = self.thompson_parameters[context_i][chosen_arm]["mu'"]

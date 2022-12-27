@@ -1,5 +1,8 @@
 from typing import Any
-from mab_samplers import MABSampler
+from dataclasses import dataclass, field
+import numpy as np
+import copy
+from mab_samplers.mab_sampler import MABSampler
 
 @dataclass
 class ThompsonSamplingMAB:

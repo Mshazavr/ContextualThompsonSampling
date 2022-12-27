@@ -1,5 +1,6 @@
 import numpy as np
-from thompson_sampling_mab import ThompsonSamplingMAB
+from dataclasses import dataclass, field
+from .thompson_sampling_mab import ThompsonSamplingMAB
 
 
 @dataclass

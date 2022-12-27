@@ -1,4 +1,6 @@
-from mab_sampler import MABSampler
+from dataclasses import dataclass
+import numpy as np
+from .mab_sampler import MABSampler
 
 
 @dataclass
