@@ -49,7 +49,7 @@ class NormalLinearThompsonSamplingCMAB(ThompsonSamplingMAB):
     return np.dot(reward_model_parameters["beta"], context)
 
 
-  def _update_thompson_parameters_from_data(self, old_data, new_data):
+  def _update_thompson_parameters_from_data(self, new_data):
     chosen_arm = new_data["arm"]
     reward = np.array(new_data["reward"]) # y
     context = np.array(new_data["context"]) # X

@@ -47,7 +47,7 @@ class NormalInverseGammaThompsonSamplingMAB(ThompsonSamplingMAB):
     return reward_model_parameters[arm]["mu"]
 
 
-  def _update_thompson_parameters_from_data(self, old_data, new_data):
+  def _update_thompson_parameters_from_data(self, new_data):
     chosen_arm = new_data["arm"]
     reward = new_data["reward"]
 

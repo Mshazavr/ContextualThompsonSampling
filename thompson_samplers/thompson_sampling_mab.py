@@ -26,7 +26,6 @@ class ThompsonSamplingMAB:
   num_arms: int 
   reward_sampler: MABSampler
   thompson_parameters: Any = None
-  observed_data: list = field(default_factory=list)
 
 
   def _sample_reward_model_parameters(self):
@@ -98,18 +97,14 @@ class ThompsonSamplingMAB:
           context=context
       )
 
-      self.observed_data.append(
+      # Perform Bayesian Update
+      self._update_thompson_parameters_from_data(  
           {
               "arm": chosen_arm, 
               "reward": observed_reward, 
               "context": context,
               "context_i": context_i
            }
-      )
-
-      # Perform Bayesian Update
-      self._update_thompson_parameters_from_data(
-          self.observed_data[:-1], self.observed_data[-1]
       )
 
       # Record results in trace
@@ -122,7 +117,6 @@ class ThompsonSamplingMAB:
                   self.reward_sampler.get_best_arm_expected_reward(contexts_per_arm) - 
                   self.reward_sampler.get_expected_reward(chosen_arm, context)
               ),
-              #"obesrved_data": self.observed_data[-1]
           }
       )
 

@@ -1,3 +1,5 @@
+import pickle
+
 import numpy as np
 from mab_samplers.linear_cmab_sampler import LinearCMABSampler
 from thompson_samplers.normal_inv_gamma_ts_mab import NormalInverseGammaThompsonSamplingMAB
@@ -78,11 +80,8 @@ def main():
 
   # Run simulation 1000 times and store the results
   simulations = []
-  for i in range(1):
+  for i in range(1000):
     np.random.seed(i)
-    
-    if (i % 10 == 0):
-      print(f"Running simulation  #{i}")
 
     # reset the priors
     CMAB.reset_thompson_parameters(cmab_thompson_parameters)
@@ -103,7 +102,12 @@ def main():
       "new_cmab_trace": new_cmab_trace
     })
 
-  print(simulations[0]["cmab_trace"][-1])
+    if (i % 10 == 9):
+      print(f"Saving simulations {i-9}-{i}")
+      with open(f'simulations_object_{i-9}_{i}', 'wb') as f:
+        pickle.dump(simulations, f)
+        simulations = []
+
 
 
 if __name__ == "__main__":
